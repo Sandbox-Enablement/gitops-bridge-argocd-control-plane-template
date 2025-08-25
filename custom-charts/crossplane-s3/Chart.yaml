@@ -1,0 +1,9 @@
+apiVersion: v2
+name: crossplane-s3
+description: Chart Helm para criar Application do ArgoCD que monitora claims de buckets S3
+
+type: application
+
+version: 1.0.0
+
+appVersion: "v1"
