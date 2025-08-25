@@ -1,6 +1,6 @@
 {{- if and .Values.global.enabled_aws_upbound .Values.providerConfig.enabled }}
 {{- with .Values.providerConfig }}
-apiVersion: aws.upbound.io/v1beta1
+apiVersion: aws.upbound.io/v1 # Verifique se existe v2, senão mantenha v1beta1
 kind: ProviderConfig
 metadata:
   name: {{ .metadata.name }}
@@ -22,9 +22,8 @@ spec:
 {{- end }}
 
 {{- if .Values.providerConfig.default }}
----
 {{- with .Values.providerConfig }}
-apiVersion: aws.upbound.io/v1beta1
+apiVersion: aws.upbound.io/v1 # Verifique se existe v2, senão mantenha v1beta1
 kind: ProviderConfig
 metadata:
   name: default

@@ -1,6 +1,6 @@
 {{- if and .Values.global.enabled_helm .Values.provider.enabled }}
 {{- with .Values.provider }}
-apiVersion: pkg.crossplane.io/v1
+apiVersion: pkg.crossplane.io/v2
 kind: Provider
 metadata:
   name: {{ .metadata.name }}
@@ -17,9 +17,9 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
-  package: {{ .package.registry }}:{{ default .package.version $.Values.global.helm_version }}
+  package: xpkg.upbound.io/crossplane-contrib/provider-helm:v2.0.0
   runtimeConfigRef:
-    apiVersion: pkg.crossplane.io/v1beta1
+    apiVersion: pkg.crossplane.io/v2
     kind: DeploymentRuntimeConfig
     name: {{ $.Values.deploymentRuntimeConfig.metadata.name }}
 {{- end }}

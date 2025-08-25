@@ -2,7 +2,7 @@
 
 {{- range .Values.providers }}
 
-apiVersion: pkg.crossplane.io/v1
+apiVersion: pkg.crossplane.io/v2
 kind: Provider
 metadata:
   name: provider-aws-{{ . }}
@@ -19,12 +19,11 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
-  package: {{ $.Values.provider.package.registry }}/provider-aws-{{ . }}:{{ $.Values.provider.package.version }}
+  package: xpkg.upbound.io/upbound/provider-aws-{{ . }}:v2.0.0
   runtimeConfigRef:
-    apiVersion: pkg.crossplane.io/v1beta1
+    apiVersion: pkg.crossplane.io/v2
     kind: DeploymentRuntimeConfig
     name: {{ $.Values.deploymentRuntimeConfig.metadata.name }}
----
 {{- end }}
 
 {{- end }}
