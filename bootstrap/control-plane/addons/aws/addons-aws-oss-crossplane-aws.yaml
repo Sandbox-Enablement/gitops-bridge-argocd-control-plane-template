@@ -63,6 +63,8 @@ spec:
               provider:
                 package:
                   registry: xpkg.upbound.io/crossplane-contrib/provider-aws
+                  # Keep the provider package version in sync with
+                  # custom-charts/crossplane-aws-upbound/values.yaml -> crossplaneProviderAwsVersion
                   version: "v0.47.0"
           # fileParameters:
           #  - name:

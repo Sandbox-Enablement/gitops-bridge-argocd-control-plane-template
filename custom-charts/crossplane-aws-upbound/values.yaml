@@ -1,6 +1,10 @@
 global:
   enabled_aws_upbound: true
 
+# Crossplane provider configuration defaults
+providerApiVersion: "v1"
+crossplaneProviderAwsVersion: "v0.47.0"
+
 deploymentRuntimeConfig:
   enabled: true
   metadata:

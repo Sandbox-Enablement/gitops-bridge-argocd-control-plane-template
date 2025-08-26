@@ -3,16 +3,18 @@
 apiVersion: pkg.crossplane.io/v2
 kind: DeploymentRuntimeConfig
 metadata:
-  name: {{ .metadata.name }}
+  name: {{ .metadata.name | default "deployment-runtime-config" }}
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-    {{- range $key, $value := .metadata.annotations }}
+    {{- $anns := default (dict) .metadata.annotations }}
+    {{- range $key, $value := $anns }}
     {{ $key }}: {{ $value | quote }}
     {{- end }}
 
-  {{- if .metadata.labels }}
+  {{- $lbls := default (dict) .metadata.labels }}
+  {{- if $lbls }}
   labels:
-    {{- range $key, $value := .metadata.labels }}
+    {{- range $key, $value := $lbls }}
     {{ $key }}: {{ $value | quote }}
     {{- end }}
   {{- end }}

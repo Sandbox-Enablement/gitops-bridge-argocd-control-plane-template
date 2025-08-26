@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "configs": {
+      "type": "object",
+      "properties": {
+        "repositories": {
+          "type": "object",
+          "properties": {
+            "aws-public-ecr": {
+              "type": "object",
+              "properties": {
+                "enableOCI": { "type": "boolean" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
