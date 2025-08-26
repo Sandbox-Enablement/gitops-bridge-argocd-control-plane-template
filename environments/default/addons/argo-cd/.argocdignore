@@ -1,0 +1,3 @@
+# Arquivo para instruir o Argo CD a ignorar arquivos que não são manifests
+# Ignorar o schema JSON de valores, que é usado apenas para validação local/CI
+values.schema.json
