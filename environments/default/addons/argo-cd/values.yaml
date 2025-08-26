@@ -283,13 +283,13 @@ extraObjects:
     kind: AppProject
     metadata:
       name: default
-      namespace: {{ $.Release.Namespace | quote }}
+      namespace: argocd
       annotations:
         source: gitops-bridge
     spec:
       clusterResourceWhitelist:
-      - group: '*'
-        kind: '*'
+        - group: '*'
+          kind: '*'
       sourceRepos:
         - '*'
       destinations:
