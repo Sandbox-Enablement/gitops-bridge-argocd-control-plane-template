@@ -267,19 +267,10 @@ configs:
 
 
 # -- Array of extra K8s manifests to deploy
-## Note: Supports use of custom Helm templates
-##       It gets handle in this form inside the argo-cd chart
-# {{ range .Values.extraObjects }}
-# ---
-# {{ if typeIs "string" . }}
-#     {{- tpl . $ }}
-# {{- else }}
-#     {{- tpl (toYaml .) $ }}
-# {{- end }}
-# {{ end }}
+# Additional objects can be declared here as YAML objects.
+# Keeping them as proper YAML mappings is more robust for ArgoCD parsing.
 extraObjects:
-  - |
-    apiVersion: argoproj.io/v1alpha1
+  - apiVersion: argoproj.io/v1alpha1
     kind: AppProject
     metadata:
       name: default
