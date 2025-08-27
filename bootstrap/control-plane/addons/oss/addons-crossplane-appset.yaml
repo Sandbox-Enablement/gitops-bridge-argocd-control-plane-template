@@ -16,7 +16,7 @@ spec:
                 addonChartNamespace: crossplane-system
                 # anything not staging or prod use this version
                 addonChartVersion: 1.15.0
-                addonChartRepository: https://charts.crossplane.io/stable
+                addonChartRepository: https://charts.crossplane.io/stable #kleber-check
               selector:
                 matchExpressions:
                   - key: akuity.io/argo-cd-cluster-name

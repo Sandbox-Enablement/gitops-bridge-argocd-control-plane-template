@@ -56,7 +56,7 @@ spec:
                   role_arn: {{metadata.annotations.aws_upbound_crossplane_iam_role_arn}}
               provider:
                 package:
-                  registry: xpkg.crossplane.io/upbound
+                  registry: xpkg.crossplane.io/upbound #kleber-check
                   version: v1.1.0
               providers:
               - cloudwatchlogs

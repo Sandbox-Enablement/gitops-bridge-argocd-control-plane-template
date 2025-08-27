@@ -2,7 +2,7 @@
 
 {{- range .Values.providers }}
 
-apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v2" }}
+apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v1" }}
 kind: Provider
 metadata:
   name: provider-aws-{{ . }}
@@ -28,7 +28,7 @@ spec:
   package: {{ printf "%s/provider-aws-%s:%s" $reg . $ver }}
   {{- end }}
   runtimeConfigRef:
-    apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v2" }}
+    apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v1" }}
     kind: DeploymentRuntimeConfig
     name: {{ $.Values.deploymentRuntimeConfig.metadata.name }}
 {{- end }}

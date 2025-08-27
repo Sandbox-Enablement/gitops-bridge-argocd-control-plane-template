@@ -1,6 +1,6 @@
 {{- if and .Values.global.enabled_helm .Values.providerConfig.enabled }}
 {{- with .Values.providerConfig }}
-apiVersion: helm.crossplane.io/v1 # Verifique se existe v2, senão mantenha v1beta1
+apiVersion: helm.crossplane.io/v1 #kleber-check Verifique se existe v2, senão mantenha v1beta1
 kind: ProviderConfig
 metadata:
   name: {{ .metadata.name }}
