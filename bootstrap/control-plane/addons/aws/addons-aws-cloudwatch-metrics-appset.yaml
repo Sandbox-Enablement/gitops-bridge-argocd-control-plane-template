@@ -41,26 +41,23 @@ spec:
       name: addon-{{name}}-{{values.addonChart}}
     spec:
       project: default
-      sources:
-        - repoURL: '{{metadata.annotations.addons_repo_url}}'
-          targetRevision: '{{metadata.annotations.addons_repo_revision}}'
-          ref: values
-        - chart: '{{values.addonChart}}'
-          repoURL: '{{values.addonChartRepository}}'
-          targetRevision: '{{values.addonChartVersion}}'
-          helm:
-            releaseName: '{{values.addonChart}}'
-            ignoreMissingValueFiles: true
-            valueFiles:
-              - $values/{{metadata.annotations.addons_repo_basepath}}environments/default/addons/{{values.addonChart}}/values.yaml
-              - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
-              - $values/{{metadata.annotations.addons_repo_basepath}}clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
-            values: |
-              clusterName: {{metadata.annotations.aws_cluster_name}}
-              serviceAccount:
-                name: {{metadata.annotations.aws_cloudwatch_metrics_service_account}}
-                annotations:
-                  eks.amazonaws.com/role-arn: {{metadata.annotations.aws_cloudwatch_metrics_iam_role_arn}}
+      source:
+        chart: '{{values.addonChart}}'
+        repoURL: '{{values.addonChartRepository}}'
+        targetRevision: '{{values.addonChartVersion}}'
+        helm:
+          releaseName: '{{values.addonChart}}'
+          ignoreMissingValueFiles: true
+          valueFiles:
+            - $values/{{metadata.annotations.addons_repo_basepath}}environments/default/addons/{{values.addonChart}}/values.yaml
+            - $values/{{metadata.annotations.addons_repo_basepath}}environments/{{metadata.labels.environment}}/addons/{{values.addonChart}}/values.yaml
+            - $values/{{metadata.annotations.addons_repo_basepath}}environments/clusters/{{name}}/addons/{{values.addonChart}}/values.yaml
+          values: |
+            clusterName: {{metadata.annotations.aws_cluster_name}}
+            serviceAccount:
+              name: {{metadata.annotations.aws_cloudwatch_metrics_service_account}}
+              annotations:
+                eks.amazonaws.com/role-arn: {{metadata.annotations.aws_cloudwatch_metrics_iam_role_arn}}
       destination:
         namespace: '{{metadata.annotations.aws_cloudwatch_metrics_namespace}}'
         name: '{{name}}'

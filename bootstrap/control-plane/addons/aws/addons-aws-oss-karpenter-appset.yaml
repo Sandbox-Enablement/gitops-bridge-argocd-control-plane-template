@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: addons-aws-karpenter
+  name: addons-aws-oss-karpenter
 spec:
   syncPolicy:
     preserveResourcesOnDeletion: true
@@ -13,12 +13,10 @@ spec:
           - clusters:
               values:
                 addonChart: karpenter
-                addonChartReleaseName: karpenter
-                addonChartRepositoryNamespace: karpenter
-                addonChartVersion: v0.34.1
-                # using oci repostory already configure in argocd
-                # argocd repo add public.ecr.aws --type helm --name aws-public-ecr --enable-oci
                 addonChartRepository: public.ecr.aws
+                addonChartRepositoryNamespace: karpenter
+                # anything not staging or prod use this version
+                addonChartVersion: v0.34.1
               selector:
                 matchExpressions:
                   - key: akuity.io/argo-cd-cluster-name
