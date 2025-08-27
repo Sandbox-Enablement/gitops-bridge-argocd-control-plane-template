@@ -59,7 +59,7 @@ spec:
             values: |
               provider:
                 package:
-                  registry: xpkg.upbound.io/crossplane-contrib/provider-kubernetes
+                  registry: xpkg.crossplane.io/crossplane-contrib/provider-kubernetes
                   version: "v0.12.1"
           # fileParameters:
           #  - name:

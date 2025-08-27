@@ -38,8 +38,8 @@ provider:
     annotations: {}
     labels: {}
   package:
-  registry: xpkg.upbound.io/upbound
-  version: v2.0.0
+    registry: xpkg.crossplane.io/upbound
+    version: v2.0.0
 
 providerConfig:
   enabled: true

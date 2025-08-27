@@ -17,7 +17,14 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
-  package: xpkg.upbound.io/crossplane-contrib/provider-helm:v2.0.0
+  {{- $reg := $.Values.provider.package.registry | default "xpkg.crossplane.io/crossplane-contrib/provider-helm" }}
+  {{- $ver := $.Values.provider.package.version | default "v0.17.0" }}
+  {{- $override := index $.Values.provider.package "override" | default "" }}
+  {{- if $override }}
+  package: {{ $override | quote }}
+  {{- else }}
+  package: {{ printf "%s:%s" $reg $ver }}
+  {{- end }}
   runtimeConfigRef:
     apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v2" }}
     kind: DeploymentRuntimeConfig

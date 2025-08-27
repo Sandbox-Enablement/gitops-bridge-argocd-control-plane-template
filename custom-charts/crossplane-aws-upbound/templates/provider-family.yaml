@@ -17,7 +17,14 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
-  package: xpkg.upbound.io/upbound/provider-family-aws:v2.0.0
+  {{- $reg := $.Values.provider.package.registry | default "xpkg.crossplane.io/upbound" }}
+  {{- $ver := $.Values.provider.package.version | default "v2.0.0" }}
+  {{- $override := index $.Values.provider.package "override" | default "" }}
+  {{- if $override }}
+  package: {{ $override | quote }}
+  {{- else }}
+  package: {{ printf "%s/provider-family-aws:%s" $reg $ver }}
+  {{- end }}
 
 
 {{- end }}
