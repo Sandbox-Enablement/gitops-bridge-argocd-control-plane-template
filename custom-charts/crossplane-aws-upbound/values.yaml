@@ -2,8 +2,10 @@ global:
   enabled_aws_upbound: true
 
 # Crossplane provider configuration defaults
-providerApiVersion: "v1"
+providerApiVersion: "v2"
 crossplaneProviderAwsVersion: "v0.47.0"
+# Crossplane API version to target for pkg.crossplane.io resources (v2 to use Crossplane v2)
+crossplaneApiVersion: "v2"
 
 deploymentRuntimeConfig:
   enabled: true
@@ -36,8 +38,8 @@ provider:
     annotations: {}
     labels: {}
   package:
-    registry: xpkg.upbound.io/upbound
-    version: v1.1.0
+  registry: xpkg.upbound.io/upbound
+  version: v2.0.0
 
 providerConfig:
   enabled: true

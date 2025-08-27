@@ -1,6 +1,6 @@
 {{- if and .Values.global.enabled_aws_upbound .Values.provider.enabled }}
 {{- with .Values.provider }}
-apiVersion: pkg.crossplane.io/v2
+apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v2" }}
 kind: Provider
 metadata:
   name: upbound-provider-family-aws

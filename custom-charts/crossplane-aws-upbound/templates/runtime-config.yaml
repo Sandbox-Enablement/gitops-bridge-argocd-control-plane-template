@@ -1,6 +1,6 @@
 {{- if and .Values.global.enabled_aws_upbound .Values.deploymentRuntimeConfig.enabled }}
 {{- with .Values.deploymentRuntimeConfig }}
-apiVersion: pkg.crossplane.io/v1beta1
+apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v2" }}
 kind: DeploymentRuntimeConfig
 metadata:
   name: {{ .metadata.name }}

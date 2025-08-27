@@ -1,6 +1,6 @@
 {{- if and .Values.global.enabled_kubernetes .Values.deploymentRuntimeConfig.enabled }}
 {{- with .Values.deploymentRuntimeConfig }}
-apiVersion: pkg.crossplane.io/v2
+apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v2" }}
 kind: DeploymentRuntimeConfig
 metadata:
   name: {{ .metadata.name | default "deployment-runtime-config" }}
