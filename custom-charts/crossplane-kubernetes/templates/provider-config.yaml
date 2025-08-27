@@ -1,6 +1,6 @@
 {{- if and .Values.global.enabled_kubernetes .Values.providerConfig.enabled }}
 {{- with .Values.providerConfig }}
-apiVersion: kubernetes.crossplane.io/v1alpha1 # kleber-check Verifique se existe v2, senão mantenha v1alpha1
+apiVersion: kubernetes.crossplane.io/v1alpha1
 kind: ProviderConfig
 metadata:
   name: {{ .metadata.name }}

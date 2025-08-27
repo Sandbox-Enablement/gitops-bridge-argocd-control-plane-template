@@ -1,5 +1,0 @@
-name: buckets3-claims
-repoURL: git@github.com:sandbox-enablement/sandbox-s3-portal-dev.git
-targetRevision: main
-path: crossplane-claim/buckets3
-namespace: crossplane

@@ -1,6 +1,6 @@
 {{- if and .Values.global.enabled_kubernetes .Values.provider.enabled }}
 {{- with .Values.provider }}
-apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v1" }}
+apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: {{ .metadata.name }}
@@ -17,16 +17,9 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
-  {{- $reg := $.Values.provider.package.registry | default "xpkg.crossplane.io/crossplane-contrib/provider-kubernetes" }}
-  {{- $ver := $.Values.provider.package.version | default "v0.12.1" }} #kleber-check
-  {{- $override := index $.Values.provider.package "override" | default "" }}
-  {{- if $override }}
-  package: {{ $override | quote }}
-  {{- else }}
-  package: {{ printf "%s:%s" $reg $ver }}
-  {{- end }}
+  package: {{ .package.registry }}:{{ default .package.version $.Values.global.kubernetes_version }}
   runtimeConfigRef:
-    apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v1" }}
+    apiVersion: pkg.crossplane.io/v1beta1
     kind: DeploymentRuntimeConfig
     name: {{ $.Values.deploymentRuntimeConfig.metadata.name }}
 {{- end }}

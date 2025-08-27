@@ -25,7 +25,7 @@ provider:
     annotations: {}
     labels: {}
   package:
-    registry: xpkg.crossplane.io/crossplane-contrib/provider-kubernetes #kleber-check
+    registry: xpkg.upbound.io/crossplane-contrib/provider-kubernetes
     version: "v0.12.1"
 
 providerConfig:

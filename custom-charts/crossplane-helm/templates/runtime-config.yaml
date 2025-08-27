@@ -1,6 +1,6 @@
 {{- if and .Values.global.enabled_helm .Values.deploymentRuntimeConfig.enabled }}
 {{- with .Values.deploymentRuntimeConfig }}
-apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v1" }}
+apiVersion: pkg.crossplane.io/v1beta1
 kind: DeploymentRuntimeConfig
 metadata:
   name: {{ .metadata.name }}

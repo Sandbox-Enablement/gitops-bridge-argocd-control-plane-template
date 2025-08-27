@@ -1,6 +1,6 @@
 {{- if and .Values.global.enabled_aws_upbound .Values.provider.enabled }}
 {{- with .Values.provider }}
-apiVersion: pkg.crossplane.io/{{ $.Values.crossplaneApiVersion | default "v2" }}
+apiVersion: pkg.crossplane.io/v1
 kind: Provider
 metadata:
   name: upbound-provider-family-aws
@@ -17,14 +17,7 @@ metadata:
     {{- end }}
   {{- end }}
 spec:
-  {{- $reg := $.Values.provider.package.registry | default "xpkg.crossplane.io/upbound" }}
-  {{- $ver := $.Values.provider.package.version | default "v2.0.0" }}
-  {{- $override := index $.Values.provider.package "override" | default "" }}
-  {{- if $override }}
-  package: {{ $override | quote }}
-  {{- else }}
-  package: {{ printf "%s/provider-family-aws:%s" $reg $ver }}
-  {{- end }}
+  package: {{ .package.registry }}/provider-family-aws:{{ .package.version }}
 
 
 {{- end }}
