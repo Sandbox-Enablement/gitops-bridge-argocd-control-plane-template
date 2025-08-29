@@ -14,3 +14,7 @@ spec:
     ManagedBy: crossplane
     CreatedVia: gitops
     Team: dev-team
+    CostCenter: development-ops
+    BackupRequired: "false"
+    Monitoring: enabled
+    LastUpdated: "2025-08-29"

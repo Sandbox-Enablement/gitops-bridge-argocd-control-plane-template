@@ -15,3 +15,9 @@ spec:
     CreatedVia: gitops
     Team: platform-team
     BackupRequired: "true"
+    CostCenter: production-ops
+    Compliance: required
+    DataClassification: confidential
+    Monitoring: enhanced
+    LastUpdated: "2025-08-29"
+    Owner: platform-engineering
