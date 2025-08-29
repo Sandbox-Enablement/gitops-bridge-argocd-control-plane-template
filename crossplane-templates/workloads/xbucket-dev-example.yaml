@@ -1,0 +1,16 @@
+apiVersion: example.org/v1alpha1
+kind: XBucket
+metadata:
+  name: bucket-dev-crossplane
+  namespace: default
+spec:
+  bucketName: bucket-dev-gitops-crossplane-2024
+  region: us-east-1
+  acl: private
+  versioning:
+    enabled: false
+  tags:
+    Environment: development
+    ManagedBy: crossplane
+    CreatedVia: gitops
+    Team: dev-team
