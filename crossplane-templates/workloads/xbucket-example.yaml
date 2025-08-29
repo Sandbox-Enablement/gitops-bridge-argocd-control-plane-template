@@ -1,0 +1,15 @@
+apiVersion: example.org/v1alpha1
+kind: XBucket
+metadata:
+  name: meu-bucket-crossplane
+  namespace: default
+spec:
+  bucketName: meu-bucket-gitops-crossplane-48792
+  region: us-west-1
+  acl: private
+  versioning:
+    enabled: true
+  tags:
+    Environment: testing
+    ManagedBy: crossplane
+    CreatedVia: gitops

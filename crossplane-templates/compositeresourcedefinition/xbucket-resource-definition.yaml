@@ -1,7 +1,7 @@
 apiVersion: apiextensions.crossplane.io/v1
 kind: CompositeResourceDefinition
 metadata:
-  name: xbucket
+  name: xbuckets.example.org
 spec:
   group: example.org
   names:
@@ -12,11 +12,10 @@ spec:
   claimNames:
     kind: BucketClaim
     plural: bucketclaims
-  scope: Namespaced
   versions:
     - name: v1alpha1
       served: true
-      storage: true
+      referenceable: true
       schema:
         openAPIV3Schema:
           type: object

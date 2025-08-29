@@ -1,4 +1,4 @@
-apiVersion: crossplane.io/v1
+apiVersion: apiextensions.crossplane.io/v1
 kind: Composition
 metadata:
   name: xbucket-composition
@@ -50,11 +50,27 @@ spec:
   patchSets:
     - name: bucket-patch-set
       patches:
-        - type: Patch
-          fromFieldPath: "spec.forProvider.bucketName"
+        - type: FromCompositeFieldPath
+          fromFieldPath: "spec.bucketName"
           toFieldPath: "spec.forProvider.bucketName"
     - name: policy-patch-set
       patches:
-        - type: Patch
-          fromFieldPath: "spec.forProvider.policyDocument"
+        - type: FromCompositeFieldPath
+          fromFieldPath: "spec.bucketName"
           toFieldPath: "spec.forProvider.policyDocument"
+          transforms:
+            - string:
+                fmt: |
+                  {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                      {
+                        "Effect": "Allow",
+                        "Principal": "*",
+                        "Action": "s3:GetObject",
+                        "Resource": "arn:aws:s3:::%s/*"
+                      }
+                    ]
+                  }
+                type: Format
+              type: string
