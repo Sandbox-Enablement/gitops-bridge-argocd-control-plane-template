@@ -19,9 +19,6 @@ spec:
         spec:
           forProvider:
             region: "us-west-2"
-          writeConnectionSecretToRef:
-            name: s3bucket-connection
-            namespace: crossplane-system
       patches:
         - type: PatchSet
           patchSetName: bucket-patch-set
@@ -48,9 +45,6 @@ spec:
                   }
                 ]
               }
-          writeConnectionSecretToRef:
-            name: bucketpolicy-connection
-            namespace: crossplane-system
       patches:
         - type: PatchSet
           patchSetName: policy-patch-set
