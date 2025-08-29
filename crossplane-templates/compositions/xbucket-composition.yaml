@@ -1,4 +1,4 @@
-apiVersion: crossplane.io/v1alpha1
+apiVersion: crossplane.io/v1
 kind: Composition
 metadata:
   name: xbucket-composition
