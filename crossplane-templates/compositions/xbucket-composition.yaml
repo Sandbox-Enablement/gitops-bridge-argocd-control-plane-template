@@ -1,0 +1,60 @@
+apiVersion: crossplane.io/v1alpha1
+kind: Composition
+metadata:
+  name: xbucket-composition
+  labels:
+    guide: "crossplane"
+spec:
+  compositeTypeRef:
+    apiVersion: example.org/v1alpha1
+    kind: XBucket
+  resources:
+    - name: s3Bucket
+      base:
+        apiVersion: s3.aws.crossplane.io/v1beta1
+        kind: Bucket
+        spec:
+          forProvider:
+            bucketName: "my-s3-bucket"
+            region: "us-west-2"
+          writeConnectionSecretToRef:
+            name: s3bucket-connection
+            namespace: crossplane-system
+      patches:
+        - type: PatchSet
+          patchSetName: bucket-patch-set
+    - name: bucketPolicy
+      base:
+        apiVersion: iam.aws.crossplane.io/v1beta1
+        kind: Policy
+        spec:
+          forProvider:
+            policyDocument: |
+              {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Principal": "*",
+                    "Action": "s3:GetObject",
+                    "Resource": "arn:aws:s3:::my-s3-bucket/*"
+                  }
+                ]
+              }
+          writeConnectionSecretToRef:
+            name: bucketpolicy-connection
+            namespace: crossplane-system
+      patches:
+        - type: PatchSet
+          patchSetName: policy-patch-set
+  patchSets:
+    - name: bucket-patch-set
+      patches:
+        - type: Patch
+          fromFieldPath: "spec.forProvider.bucketName"
+          toFieldPath: "spec.forProvider.bucketName"
+    - name: policy-patch-set
+      patches:
+        - type: Patch
+          fromFieldPath: "spec.forProvider.policyDocument"
+          toFieldPath: "spec.forProvider.policyDocument"

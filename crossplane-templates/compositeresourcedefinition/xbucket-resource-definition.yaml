@@ -1,0 +1,44 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+metadata:
+  name: xbucket
+spec:
+  group: example.org
+  names:
+    kind: XBucket
+    plural: xbuckets
+    shortNames:
+      - xb
+  claimNames:
+    kind: BucketClaim
+    plural: bucketclaims
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                bucketName:
+                  type: string
+                region:
+                  type: string
+                acl:
+                  type: string
+                versioning:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                tags:
+                  type: object
+                  additionalProperties:
+                    type: string
+              required:
+                - bucketName
+                - region
