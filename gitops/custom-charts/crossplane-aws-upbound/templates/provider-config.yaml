@@ -45,5 +45,4 @@ spec:
   {{- .spec | toYaml | nindent 2 }}
 {{- end }}
 {{- end }}
-
 {{- end }}
